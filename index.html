@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alto do Parque</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .sidebar-socials {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            padding: 0 5px;
+        }
+        .sidebar-socials a {
+            color: #ffffff;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .sidebar-socials a:hover {
+            color: white; 
+        }
+        .mobile-socials {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+        .mobile-socials a {
+            color: #ffffff;
+            font-size: 1.6rem;
+            transition: color 0.3s ease;
+        }
+        .mobile-socials a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="logo">
+                <img src="altodoparque.png" alt="Alto do Parque Rooftop">
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#home">Home</a>
+                <a href="reservas.html">Faça sua reserva</a>
+                <a href="menu.html">Ver Menu</a>
+                <a href="galeria.html">Galeria</a>
+                <a href="about.html">Sobre</a>
+                <a href="contato.html">Contato</a>
+                
+                <div class="sidebar-socials">
+                    <a href="https://www.instagram.com/altodoparquerooftop/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </nav>
+
+        </div>
+
+        <div class="sidebar-bottom">
+            <span>© 2026 Alto do Parque. Desenvolvido por <strong>Lucas Gusmão</strong>.</span>
+        </div>
+
+    </aside>
+
+    <header class="mobile-header">
+
+        <div class="logo">
+            <img src="altodoparque.png" alt="Logo Alto do Parque">
+        </div>
+
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+        </div>
+
+    </header>
+
+    <div class="mobile-menu">
+
+        <a href="#">Home</a>
+        <a href="reservas.html">Faça sua reserva</a>
+        <a href="menu.html">Ver Menu</a>
+        <a href="galeria.html">Galeria</a>
+        <a href="about.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+        
+        <div class="mobile-socials">
+            <a href="https://www.instagram.com/altodoparquerooftop/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+
+    </div>
+
+    <main class="slider-wrapper">
+
+        <div class="slider">
+
+            <section class="slide active">
+
+                <img src="05.jpeg">
+
+                <div class="slide-content">
+
+                    <span class="slide-tag">
+                        ELEVANDO SUA EXPERIÊNCIA
+                    </span>
+
+                    <h1>
+                        Viva Belém lá do alto
+                    </h1>
+
+                    <p>
+                        Música boa, drinks incríveis regado a boa gastronomia.
+                    </p>
+
+                    <a href="reservas.html" class="btn">
+                        Faça sua reserva
+                    </a>
+
+                </div>
+
+            </section>
+
+            <section class="slide">
+
+                <img src="09.jpeg">
+
+                <div class="slide-content">
+
+                    <span class="slide-tag">
+                        GASTRONOMIA EXCLUSIVA
+                    </span>
+
+                    <h1>
+                        Onde a noite ganha outro nível
+                    </h1>
+
+                    <p>
+                        Misturando elegância, sabor e experiências inesquecíveis.
+                    </p>
+
+                    <a href="menu.html" class="btn">
+                        Ver Menu
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <div class="slider-controls">
+
+            <button class="prev">
+                ←
+            </button>
+
+            <button class="next">
+                →
+            </button>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
