@@ -398,7 +398,7 @@ import {
 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// CREDENCIAIS DO NOVO PROJETO (reservasdopda)
+// CREDENCIAIS DO PROJETO (reservasdopda)
 const firebaseConfig = {
   apiKey: "AIzaSyB7vAMTt45bP69jYCou4fG_AYkN6TlKw9I",
   authDomain: "reservasdopda.firebaseapp.com",
@@ -414,11 +414,12 @@ const db = getDatabase(app);
 
 const EMPRESA_ID = "reservasdopda";
 
+// Horários das 19:00 às 22:00
 const horariosFuncionamento = [
-    "18:00",
     "19:00",
     "20:00",
     "21:00",
+    "22:00"
 ];
 
 const inputData = document.getElementById('data');
@@ -468,18 +469,16 @@ inputData.addEventListener('change', async () => {
     const dataSelecionada = inputData.value;
     if (!dataSelecionada) return;
 
-    // --- CORREÇÃO DE FUSO HORÁRIO PARA PEGAR O DIA DA SEMANA CORRETO ---
-    // O input retorna YYYY-MM-DD. Adicionar 'T00:00:00' garante que o JavaScript entenda a data local e não mude o dia.
+    // --- VERIFICAÇÃO PARA ACEITAR APENAS SÁBADOS ---
     const dataObjeto = new Date(dataSelecionada + 'T00:00:00');
     const diaDaSemana = dataObjeto.getDay(); 
 
-    // 0 = Domingo, 5 = Sexta-feira, 6 = Sábado. 
-    // Se NÃO for nenhum desses, bloqueia.
-    if (diaDaSemana !== 5 && diaDaSemana !== 6 && diaDaSemana !== 0) {
+    // 6 = Sábado
+    if (diaDaSemana !== 6) {
         selectHorario.innerHTML = `<option value="">Fechado neste dia</option>`;
         selectHorario.disabled = true;
         btnEnviar.disabled = true;
-        mostrarAlerta("Aviso", "Nosso restaurante funciona exclusivamente de Sexta a Domingo. Por favor, selecione um final de semana!");
+        mostrarAlerta("Alto do Parque", "As reservas funcionam exclusivamente aos sábados. Por favor, selecione um sábado para a sua visita!");
         return;
     }
 
@@ -528,17 +527,17 @@ formReserva.addEventListener('submit', async (e) => {
     const data = inputData.value;
     const dataFormatada = data.split('-').reverse().join('/');
 
-    // Validação extra de segurança no envio para garantir os dias certos
+    // Validação de segurança para garantir que a reserva é no sábado
     const dataObjeto = new Date(data + 'T00:00:00');
     const diaDaSemana = dataObjeto.getDay();
-    if (diaDaSemana !== 5 && diaDaSemana !== 6 && diaDaSemana !== 0) {
-        mostrarAlerta("Erro", "Data inválida. Só atendemos de sexta a domingo.");
+    if (diaDaSemana !== 6) {
+        mostrarAlerta("Alto do Parque", "Data inválida. As reservas ocorrem somente aos sábados.");
         return;
     }
 
     if (qtdPessoas === "20+") {
-        const numeroWhatsCliente = "5591983042701"; // Coloque o número do seu novo cliente aqui!
-        const mensagemWhats = `Olá! Gostaria de organizar uma reserva para um grupo de *Mais de 20 pessoas*.%0A%0A*Detalhes do Solicitante:*%0A• *Nome:* ${nome}%0A• *WhatsApp:* ${whatsappCliente}%0A• *E-mail:* ${emailCliente}%0A• *Data desejada:* ${dataFormatada}`;
+        const numeroWhatsCliente = "5591983042701";
+        const mensagemWhats = `Olá! Gostaria de organizar uma reserva para um grupo de *Mais de 20 pessoas* no Alto do Parque.%0A%0A*Detalhes do Solicitante:*%0A• *Nome:* ${nome}%0A• *WhatsApp:* ${whatsappCliente}%0A• *E-mail:* ${emailCliente}%0A• *Data desejada:* ${dataFormatada}`;
         
         const urlLink = `https://wa.me/${numeroWhatsCliente}?text=${mensagemWhats}`;
         window.open(urlLink, '_blank');
@@ -568,7 +567,7 @@ formReserva.addEventListener('submit', async (e) => {
         await set(novaReservaRef, dadosAgendamento);
 
         mostrarAlerta(
-            "Reservas", 
+            "Alto do Parque", 
             `Obrigado, ${nome}! Sua reserva para o dia ${dataFormatada} às ${horario} foi realizada com sucesso.`
         );
 
@@ -579,7 +578,7 @@ formReserva.addEventListener('submit', async (e) => {
 
     } catch (error) {
         console.error("Erro ao salvar agendamento:", error);
-        mostrarAlerta("Reservas", "Houve um erro ao salvar sua reserva. Tente novamente.");
+        mostrarAlerta("Alto do Parque", "Houve um erro ao salvar sua reserva. Tente novamente.");
         btnEnviar.disabled = false;
         btnEnviar.textContent = "Reservar";
     }
